@@ -2,9 +2,6 @@
 
 ## QR Code
 
-TODO
-
-
 ![](/img/qr.jpg)
 
 ## Language
@@ -13,14 +10,14 @@ English. For everything.
 
 ## Where and When
 
+TODO: TIME AND CLASSROOM
+
 ### Laptop
 
 For each session, **please bring your own Laptop!**. Please bring your headphone as well, because you will watch videos.
 
-TODO: TIME AND CLASSROOM
 
-
-## Lectures
+## Sessions
 
 ### Session 1
 - Linear Regression
@@ -71,13 +68,11 @@ Or, in a playlist:
 - Model selection
 
 
-### Session 8 and forward
+### Session 8 and after
 
 - CNN
 - https://poloclub.github.io/cnn-explainer/
 - https://github.com/helblazer811/ManimML
-
-
 
 - GAN
 - https://poloclub.github.io/ganlab/
@@ -86,18 +81,21 @@ Or, in a playlist:
 - AutoEncoder
 - https://douglasduhaime.com/posts/visualizing-latent-spaces.html
 
+- Transformer/Attention is all you need
+
+
 
 ## Score
 
 Denoting your Final Exam score as `T`, your project score as `P`, your final score will be 
 
 ```python
-0.7 * T + 0.3 * P
+0.8 * T + 0.2 * P
 ```
 
 For final exams:
-- 70% will be on session 1 to session 7 (linear regression up to model selections)
-- 30% will be random draw of those questions:
+- around 70% will be on session 1 to session 7 (linear regression up to model selections)
+- around 30% will be random draw of those questions:
     - [bag-of-questions.md](./bag-of-questions.md)
     - Notice this bag of questions will grow with the time.
 
@@ -195,10 +193,6 @@ For private questions, please send your questions by email to:
 
 Office visit is NOT welcome unless you make an appointment at least one day in advance.
 
-## Student Name List
-
-TODO
-
 ## Online resources
 
 1. 吴恩达机器学习系列：
@@ -208,3 +202,4 @@ TODO
 
 ## License
 This repository is licensed under [MIT](LICENSE).
+
