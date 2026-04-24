@@ -1,23 +1,16 @@
 
 ## Project
 
-### Kick off
-
-Projects kick off at Week 5, in the code session.
-
 ### Forming groups
 
-Each group 4 students.
+Each group 6 students.
 
 Forming groups:
 - https://docs.qq.com/doc/DT2xqVHphanhGUWpR (Login with WeChat by scanning the QR code)
 
-At most ONE group could have 3 or 5 students, provided that `N_Student % 4 != 0`.
-
-As our final project will be on En-to-CN translation of srt files, Each group of 4 students is expected to include ONE Chinese students. You can do without, provided you can find people to give you feedback on your translation quality.
 
 ### What's expected of your video
-- Length of video \>= 10 min
+- Length of video >= 10 min
 - If possible, make it fun (Because life is good). 
 - If possible, make it fancy (Because you are young). 
 - And yes, your video should be presented in English. 
@@ -42,7 +35,7 @@ For each team, just one submission of the work is necessary, by one member of yo
 
 Deadline for submission:
 - The First Friday of the 14 days of Exam Weeks of SHU, 23:59.
-- For 2025, it's Friday 30/05 23:59.
+- For 2026, it's ?? ??/?? 23:59.
 
 ### Gallery of Final project videos
 
