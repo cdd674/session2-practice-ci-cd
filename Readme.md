@@ -22,29 +22,11 @@ For each session, **please bring your own Laptop!**. Please bring your headphone
 ### Session 1
 - Linear Regression
 
-You might find those links on visualization useful:
-- https://observablehq.com/@yizhe-ang/interactive-visualization-of-linear-regression
-- https://visualize-it.github.io/polynomial_regression/simulation.html  
-- https://uclaacm.github.io/gradient-descent-visualiser/#playground
-- https://ben-karr.github.io/react-3d-gradients/
-
 ### Session 2
 - Logistic Regression (for classification)
 
-You might find those links on visualization useful:
-- https://playground.tensorflow.org/
-
 ### Session 3, 4, 5
 - Neural networks
-
-During the class, we will play a little bit with Tensorflow Playground:
-- https://playground.tensorflow.org
-
-Those materials can be very interesting as well:
-- https://developers.google.com/machine-learning/crash-course/neural-networks/nodes-hidden-layers
-- https://developers.google.com/machine-learning/crash-course/neural-networks/activation-functions
-- https://www.v7labs.com/blog/neural-networks-activation-functions
-
 
 3b1b videos:
 
