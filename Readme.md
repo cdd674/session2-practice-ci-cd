@@ -1,0 +1,210 @@
+# ML01 Machine Learning, UTSEUS, Shanghai University
+
+## QR Code
+
+TODO
+
+
+![](/img/qr.jpg)
+
+## Language
+
+English. For everything.
+
+## Where and When
+
+### Laptop
+
+For each session, **please bring your own Laptop!**. Please bring your headphone as well, because you will watch videos.
+
+TODO: TIME AND CLASSROOM
+
+
+## Lectures
+
+### Session 1
+- Linear Regression
+
+You might find those links on visualization useful:
+- https://observablehq.com/@yizhe-ang/interactive-visualization-of-linear-regression
+- https://visualize-it.github.io/polynomial_regression/simulation.html  
+- https://uclaacm.github.io/gradient-descent-visualiser/#playground
+- https://ben-karr.github.io/react-3d-gradients/
+
+### Session 2
+- Logistic Regression (for classification)
+
+You might find those links on visualization useful:
+- https://playground.tensorflow.org/
+
+### Session 3, 4, 5
+- Neural networks
+
+During the class, we will play a little bit with Tensorflow Playground:
+- https://playground.tensorflow.org
+
+Those materials can be very interesting as well:
+- https://developers.google.com/machine-learning/crash-course/neural-networks/nodes-hidden-layers
+- https://developers.google.com/machine-learning/crash-course/neural-networks/activation-functions
+- https://www.v7labs.com/blog/neural-networks-activation-functions
+
+
+3b1b videos:
+
+Either on YouTube:
+- https://www.youtube.com/watch?v=aircAruvnKk
+- https://www.youtube.com/watch?v=IHZwWFHWa-w
+- https://www.youtube.com/watch?v=Ilg3gGewQ5U
+- https://www.youtube.com/watch?v=tIeHLnjs5U8
+
+Or, on Bilibili:
+- https://www.bilibili.com/video/BV1bx411M7Zx/
+- https://www.bilibili.com/video/BV1Ux411j7ri/
+- https://www.bilibili.com/video/BV16x411V7Qg (Two videos on this one url)
+
+Or, in a playlist:
+- https://space.bilibili.com/88461692/lists/1528929
+
+
+
+### Session 6, 7
+- Model selection
+
+
+### Session 8 and forward
+
+- CNN
+- https://poloclub.github.io/cnn-explainer/
+- https://github.com/helblazer811/ManimML
+
+
+
+- GAN
+- https://poloclub.github.io/ganlab/
+
+
+- AutoEncoder
+- https://douglasduhaime.com/posts/visualizing-latent-spaces.html
+
+
+## Score
+
+Denoting your Final Exam score as `T`, your project score as `P`, your final score will be 
+
+```python
+0.7 * T + 0.3 * P
+```
+
+For final exams:
+- 70% will be on session 1 to session 7 (linear regression up to model selections)
+- 30% will be random draw of those questions:
+    - [bag-of-questions.md](./bag-of-questions.md)
+    - Notice this bag of questions will grow with the time.
+
+### Distribution of notes
+The distribution of notes is as follows:
+- 10% A (90-100)
+- 20% A- (85-89)
+- 30% B (80-84)
+- 20% C (75-79)
+- 20% D/E/F
+
+Historical failure rates:
+- 2021: 10%
+- 2023: 10%
+- 2025: 15%
+
+
+
+#### Zen of Python
+
+https://peps.python.org/pep-0020/
+
+```text
+Beautiful is better than ugly.
+
+Explicit is better than implicit.
+
+Simple is better than complex.
+
+Complex is better than complicated.
+
+Flat is better than nested.
+
+Sparse is better than dense.
+
+Readability counts.
+
+Special cases aren't special enough to break the rules.
+
+Although practicality beats purity.
+
+Errors should never pass silently.
+
+Unless explicitly silenced.
+
+In the face of ambiguity, refuse the temptation to guess.
+
+There should be one-- and preferably only one --obvious way to do it.
+
+Although that way may not be obvious at first unless you're Dutch.
+
+Now is better than never.
+
+Although never is often better than *right* now.
+
+If the implementation is hard to explain, it's a bad idea.
+
+If the implementation is easy to explain, it may be a good idea.
+
+Namespaces are one honking great idea -- let's do more of those!
+```
+
+## Asking questions :question:
+
+### Leveraging **[Gitee Issue](https://gitee.com/lundechen/cpp/issues)** for asking questions
+By default, you should ask questions via **[Gitee Issue](https://gitee.com/lundechen/cpp/issues)**. Here is how:
+- https://www.bilibili.com/video/BV1364y1h7sb/
+
+### Principe
+Here is the principle for asking questions:
+
+>  **Google/ChatGPT First, Peers Second, Profs Last.**
+
+You are expected to ask questions via **[Gitee Issue](https://gitee.com/lundechen/cpp/issues)**. However, as a **secondary**  (and hence, less desirable, less encouraged) choice, you could also ask questions in the WeChat group.
+
+> Why Gitee Issue? Because it's simply more **professional**, and better in every sense.
+
+In Gitee Issue and the WeChat group, questions will be answered selectively. 
+
+Questions won't be answered if:
+- they could be solved on a simple Google search
+- they are out of the scope of the course
+- they are well in advance of the progress of the course
+- professors think that it's not interesting for discussion
+
+### Regarding personal WeChat chats:
+- **Questions asked in personal WeChat chats will NOT be answered.**
+
+Learning how to use Google & Baidu & Bing & ChatGTP to solve computer science problems is an important skill you should develop during this course.
+
+For private questions, please send your questions by email to:
+- lundechen@shu.edu.cn (Lunde Chen)
+
+### Office visit
+
+Office visit is NOT welcome unless you make an appointment at least one day in advance.
+
+## Student Name List
+
+TODO
+
+## Online resources
+
+1. 吴恩达机器学习系列：
+    - https://www.bilibili.com/video/BV164411b7dx
+1. 吴恩达深度学习系列：
+    - https://www.bilibili.com/video/BV164411m79z
+
+## License
+This repository is licensed under [MIT](LICENSE).
