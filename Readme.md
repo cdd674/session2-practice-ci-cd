@@ -8,10 +8,6 @@
 
 English. For everything.
 
-## Where and When
-
-TODO: TIME AND CLASSROOM
-
 ### Laptop
 
 For each session, **please bring your own Laptop!**. Please bring your headphone as well, because you will watch videos.
@@ -55,14 +51,8 @@ hence two main session each week.
 
 ## Score
 
-Denoting your Final Exam score as `T`, your project score as `P`, your final score will be 
-
-```python
-0.8 * T + 0.2 * P
-```
-
-For final exams `T`:
-- around 70% will be on session 1 to session 7 (main sessions, linear regression up to model selections)
+100% will be on your final exam.
+- around 70% will be on session 1 to session 7 (main sessions, linear regression up to model selections; questions will be more in depth)
 - around 30% will be easy questions for extra sessions. 
 
 ### Distribution of notes

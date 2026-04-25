@@ -49,81 +49,7 @@ Here are three practices that you should do with your teammate, as shown in the 
 5. The second partner then tries to merge and resolves the resulting conflict
 
 
-## Introduction to Git and GitHub
-
-Git is a distributed version control system that allows developers to track changes, collaborate effectively, and maintain different versions of their codebase. GitHub is a platform that hosts Git repositories and provides additional collaboration features like Pull Requests, Issues, and Actions.
-
-### Why Git and GitHub?
-
-- **Version control**: Track changes to code over time
-- **Collaboration**: Multiple developers can work on the same project simultaneously
-- **Branching**: Isolate work on different features or bugs
-- **History**: Maintain a complete history of changes with the ability to revert if needed
-- **Pull Requests**: Review code before it's merged into the main codebase
-
-## Git Fundamentals
-
-### Key Concepts
-
-- **Repository (Repo)**: Storage location for your project
-- **Commit**: A saved snapshot of your changes
-- **Branch**: An independent line of development
-- **Remote**: A version of your repository hosted on a server (like GitHub)
-- **Clone**: Creating a local copy of a remote repository
-- **Push**: Sending commits to a remote repository
-- **Pull**: Fetching and integrating changes from a remote repository
-- **Merge**: Combining changes from different branches
-- **Rebase**: Reapplying commits on top of another base branch
-
-### Basic Git Commands
-
-```bash
-# Initialize a new Git repository
-git init
-
-# Check the status of your repository
-git status
-
-# Add changes to the staging area
-git add <file>
-git add .  # Add all changes
-
-# Commit changes
-git commit -m "Commit message"
-
-# View commit history
-git log
-
-# Create a new branch
-git branch <branch-name>
-
-# Switch to a branch
-git checkout <branch-name>
-
-# Create and switch to a new branch in one command
-git checkout -b <branch-name>
-
-# Merge a branch into your current branch
-git merge <branch-name>
-
-# Fetch changes from a remote repository
-git fetch <remote>
-
-# Pull changes from a remote repository (fetch + merge)
-git pull <remote> <branch>
-
-# Push changes to a remote repository
-git push <remote> <branch>
-```
-
-## GitHub Collaboration Workflows
-
-There are two primary workflows for collaboration on GitHub:
-
-1. **Shared Repository Model**: All collaborators have push access to a single shared repository
-2. **Fork and Pull Model**: Contributors fork the repository and push changes to their personal copy
-
-## Pull Requests Within One Team
+# Video 1: Pull Requests Within One Team
 
 This workflow is common when all team members have write access to the same repository.
 
@@ -211,7 +137,7 @@ git branch -d feature/new-feature
 git push origin --delete feature/new-feature
 ```
 
-## Pull Requests Across Teams (Forking Workflow)
+# Video 2. Pull Requests Across Teams (Forking Workflow)
 
 This workflow is used when you don't have direct write access to a repository, such as when contributing to open-source projects.
 
@@ -315,7 +241,7 @@ git branch -d feature/new-feature
 git push origin --delete feature/new-feature
 ```
 
-## Managing Merge Conflicts
+# Video 3: Managing Merge Conflicts
 
 Merge conflicts occur when Git cannot automatically merge changes from different branches because they modify the same part of a file.
 
@@ -413,32 +339,3 @@ git rebase main
   - To keep your feature branch updated with the latest changes from the main branch
   - To clean up your branch before submitting a pull request
   - For local branches that haven't been shared yet
-
-## Best Practices
-
-1. **Commit Often, Push Regularly**
-   - Make small, focused commits with clear messages
-   - Push regularly to back up your work and share progress
-
-2. **Keep Branches Short-Lived**
-   - Complete features promptly and merge them
-   - Avoid long-running branches that diverge significantly from main
-
-3. **Write Good Commit Messages**
-   - Use the imperative mood (e.g., "Add feature" not "Added feature")
-   - Include a brief description of what changed and why
-
-4. **Pull Before Push**
-   - Always pull the latest changes before pushing to avoid unnecessary merge conflicts
-
-5. **Use Feature Branches**
-   - Never work directly on main/master
-   - Create a new branch for each feature, bug fix, or task
-
-6. **Review Your Changes Before Committing**
-   - Use `git diff` or `git status` to review changes before committing
-   - Ensure you're not committing debug code, print statements, or unrelated changes
-
-7. **Squash Commits Before Merging**
-   - Consider squashing multiple commits into one before merging a PR
-   - This creates a cleaner history while preserving the detailed history in the PR

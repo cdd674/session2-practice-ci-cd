@@ -1,6 +1,4 @@
-# 🚀 Machine Learning Course: Practice Session 1
-
-## Environment Setup Guide
+# Environment Setup Guide
 
 ### 🌐 Internet Access Setup
 
