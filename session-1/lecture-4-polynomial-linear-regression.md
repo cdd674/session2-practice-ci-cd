@@ -97,7 +97,7 @@ Higher degree → more flexible model.
 
 # 6. Gradient Descent
 
-We can still use gradient descent.
+We still use gradient descent.
 
 The loss is the same:
 

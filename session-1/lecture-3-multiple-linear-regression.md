@@ -47,6 +47,15 @@ where:
 * $W \in \mathbb{R}^{d \times 1}$ (weight matrix)
 * $b \in \mathbb{R}^{1 \times 1}$ (bias)
 
+#### Interpretation
+
+Each weight $w_j$ shows how much feature $x_j$ affects the prediction.
+
+* positive $w_j$ → increases prediction
+* negative $w_j$ → decreases prediction
+
+The model is still **linear in parameters**, even with many features.
+
 ---
 
 # 3. Dataset Representation
@@ -79,7 +88,6 @@ $$
 \mathcal{L}(W, b) = \frac{1}{n} \sum_{i=1}^n (\hat{y}^{(i)} - y^{(i)})^2
 $$
 
-This measures how far predictions are from true values.
 
 ---
 
@@ -109,7 +117,7 @@ We update all parameters using gradient descent.
 
 ---
 
-# 6. Batch Matrix Form
+# 6. Batch Matrix Form (Optional)
 
 We can write everything in a compact matrix form for efficient computation.
 
@@ -181,13 +189,3 @@ $$
 \frac{\partial \mathcal{L}}{\partial b} = \frac{2}{n}\mathbf{1}^{\mathsf{T}}(XW + \mathbf{1}b - y)
 $$
 
----
-
-# 7. Interpretation
-
-Each weight $w_j$ shows how much feature $x_j$ affects the prediction.
-
-* positive $w_j$ → increases prediction
-* negative $w_j$ → decreases prediction
-
-The model is still **linear in parameters**, even with many features.

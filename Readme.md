@@ -39,20 +39,27 @@ hence two main session each week.
 
 ### Session 8 and after
 
+- Transformer/Attention is all you need
+
 - CNN, ResNet
 
 - GAN, adversarial attack
 
 - AutoEncoder
 
-- Transformer/Attention is all you need
 
 
 
 ## Score
 
-100% will be on your final exam.
-- around 70% will be on session 1 to session 7 (main sessions, from linear regression up to model selections; questions will be more in depth)
+Denoting your Final Exam score as `T`, your project score as `P`, your final score will be 
+
+```python
+0.7 * T + 0.3 * P
+```
+
+For final exams `T`:
+- around 70% will be on session 1 to session 7 (main sessions, from linear regression, logistic regression, neural networks up to model selections; questions will be more in depth; lecture and code; a little bit of practice will be in the final exam as well)
 - around 30% will be easy questions for extra sessions. 
 
 ### Distribution of notes

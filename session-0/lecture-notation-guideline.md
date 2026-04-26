@@ -1,4 +1,4 @@
-## Notation Guideline for this course
+## Notation Guideline (From Session 8 and on)
 
 Notation in machine learning is **less a rulebook and more a dialect**—fluid, contextual, and sometimes frustratingly inconsistent. And that's okay. In fact, it's *necessary*. Trying to force one notation system across linear models, transformers, GANs, and RL agents would be like insisting everyone speak the same language regardless of what they're trying to say. **Notation adapts to the structure of thought, not the other way around.**
 
