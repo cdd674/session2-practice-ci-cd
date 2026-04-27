@@ -2,7 +2,7 @@
 
 ## Introduction
 
-In this tutorial, we will explore the mathematical foundations of simple linear regression, implement it from scratch using Python and NumPy, and enhance the basic implementation for improved performance and usability.
+In this tutorial, we will explore the mathematical foundations of simple linear regression, implement it from scratch using Python and NumPy.
 
 ## Mathematical Foundations
 
