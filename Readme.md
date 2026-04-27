@@ -61,6 +61,8 @@ Denoting your Final Exam score as `T`, your project score as `P`, your final sco
 For final exams `T`:
 - around 70% will be on session 1 to session 7 (main sessions, from linear regression, logistic regression, neural networks up to model selections; questions will be more in depth; lecture and code; a little bit of practice will be in the final exam as well)
 - around 30% will be easy questions for extra sessions. 
+- no materials will be allowed (no books, no sheets, no anything) during the final exam.
+
 
 ### Distribution of notes
 The distribution of notes is as follows:
