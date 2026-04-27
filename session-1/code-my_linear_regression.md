@@ -250,9 +250,8 @@ class MyOwnLinearRegression:
             y_predicted = np.dot(X, self.weights) + self.bias
 
             # Compute gradients
-            # Questions to students: 1 / n_samples or 2 / n_samples, does that matter? 
-            dw = (1 / n_samples) * np.dot(X.T, (y_predicted - y))
-            db = (1 / n_samples) * np.sum(y_predicted - y)
+            dw = (2 / n_samples) * np.dot(X.T, (y_predicted - y))
+            db = (2 / n_samples) * np.sum(y_predicted - y)
 
             # Update parameters
             self.weights -= self.lr * dw
@@ -286,21 +285,6 @@ plt.xlabel('Years of Experience')
 plt.ylabel('Salary')
 plt.show()
 ```
-
-<details>
-<summary>❓ In the commented question about using 1/n_samples or 2/n_samples for gradient calculation, what is the correct approach and why?</summary>
-
-Both approaches are valid:
-
-1. Mathematically, the correct gradient includes 2/n_samples from differentiating the MSE cost function
-
-2. In practice, using 1/n_samples is common because:
-   - The factor of 2 can be absorbed into the learning rate
-   - Since learning rate is tuned anyway, removing the 2 simplifies the equation
-   - With proper learning rate adjustment, both approaches converge identically
-
-The implementation using 1/n_samples is perfectly acceptable as long as the learning rate is properly tuned.
-</details><br>
 
 ### Code Explanation 
 
