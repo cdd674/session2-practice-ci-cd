@@ -6,11 +6,18 @@ Please pair up with your neighbor and follow the steps as shown in the videos.
 
 
 ## Videos
+Chinese version:
 
 - [GitHub Pull Request (1/3) - within one team](https://www.bilibili.com/video/BV1me4y1T73D/)
 - [GitHub Pull Request (2/3) - across teams](https://www.bilibili.com/video/BV1qv4y1R7L7)
 - [GitHub Pull Request (3/3) - conflict resolving](https://www.bilibili.com/video/BV1N8411V7Fa)
 
+English version:
+- https://www.bilibili.com/video/BV1LgcfzyEq7/?spm_id_from=333.1387.upload.video_card.click
+
+- https://www.bilibili.com/video/BV1RgcfzCEpf/?spm_id_from=333.1387.upload.video_card.click
+
+- https://www.bilibili.com/video/BV1RgcfzCEpf/?spm_id_from=333.1387.upload.video_card.click
 
 Here are three practices that you should do with your teammate, as shown in the videos. If you don't understand Chinese, that should not be a problem. You can still follow the instructions/operations shown in the videos.
 
