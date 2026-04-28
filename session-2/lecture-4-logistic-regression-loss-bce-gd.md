@@ -196,11 +196,21 @@ $$
 b \leftarrow b - \eta \frac{1}{n} \sum_{i=1}^{n} (\hat{y}_i - y_i)
 $$
 
-**Remarks:**
+Or, in matrix form (full batch; and be used for non-full batch as well):
 
-* Strong feedback for mistakes
-* Smooth convergence due to sigmoid + BCE
-* Simple update rules, easy to implement
+$$
+W \leftarrow W - \eta
+\frac{1}{n}
+X^{\mathsf T}
+(\hat{Y}-Y)
+$$
+
+$$
+b \leftarrow b - \eta \frac{1}{n} \sum_{i=1}^{n}
+(\hat{y}_i-y_i)
+$$
+
+
 
 ---
 
