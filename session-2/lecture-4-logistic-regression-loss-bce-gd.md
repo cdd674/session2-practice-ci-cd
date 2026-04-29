@@ -60,7 +60,51 @@ $$
 
 ### 2.2 Poor feedback for wrong predictions
 
-Example:
+Let's derive the gradient of MSE w.r.t. the pre-activation $z$ to understand why the feedback is weak.
+
+**MSE loss for a single sample:**
+
+$$
+\mathcal{L} = (\hat{y} - y)^2
+$$
+
+Since the prediction passes through the sigmoid activation:
+
+$$
+\hat{y} = \sigma(z)
+$$
+
+By the chain rule, the gradient w.r.t. $z$ is:
+
+$$
+\frac{\partial \mathcal{L}}{\partial z} = \frac{\partial \mathcal{L}}{\partial \hat{y}} \cdot \frac{\partial \hat{y}}{\partial z}
+$$
+
+
+**Step 1: Gradient of loss w.r.t. prediction**
+
+$$
+\frac{\partial \mathcal{L}}{\partial \hat{y}} = 2(\hat{y} - y)
+$$
+
+
+**Step 2: Gradient of sigmoid w.r.t. pre-activation**
+
+The sigmoid derivative is:
+
+$$
+\frac{\partial \hat{y}}{\partial z} = \frac{\partial \sigma(z)}{\partial z} = \sigma(z)(1 - \sigma(z)) = \hat{y}(1 - \hat{y})
+$$
+
+
+**Final: Combined gradient**
+
+$$
+\boxed{\frac{\partial \mathcal{L}}{\partial z} = 2(\hat{y} - y) \hat{y}(1 - \hat{y})}
+$$
+
+
+**Example:**
 
 * True label $y = 1$
 * Prediction $\hat{y} = 0.01$
@@ -68,16 +112,16 @@ Example:
 The MSE loss is:
 
 $$
-\mathcal{L} = (\hat{y}-y)^2 = (0.01 - 1)^2 = 0.9801
+\mathcal{L} = (\hat{y} - y)^2 = (0.01 - 1)^2 = 0.9801
 $$
 
-Its gradient w.r.t $z$ is tiny because the derivative passes through the sigmoid:
+The gradient w.r.t. $z$ is:
 
 $$
-\frac{d\mathcal{L}}{dz} = (\hat{y}-y) \hat{y}(1-\hat{y}) = (-0.99)(0.01*0.99) \approx -0.0098
+\frac{\partial \mathcal{L}}{\partial z} = 2(\hat{y} - y) \hat{y}(1 - \hat{y}) = 2(-0.99)(0.01 \times 0.99) \approx -0.0196
 $$
 
-Notice how **the correction signal is tiny** despite being a huge mistake. This slows down learning drastically.
+Notice how **the correction signal is tiny** ($\approx -0.02$) despite being a huge mistake (loss $\approx 0.98$). This is because the sigmoid derivative $\hat{y}(1 - \hat{y})$ becomes very small when $\hat{y}$ is near 0 or 1, causing the gradient to vanish and slowing down learning drastically.
 
 ### 2.3 Ignores probability semantics (optional)
 
@@ -239,9 +283,9 @@ $$
 Suppose:
 
 * Feature: $x = [1, 2]$ (row vector, $x \in \mathbb{R}^{1 \times 2}$)
+* True label: $y = 1$
 * Weight: $W = \begin{bmatrix} 0.5 \\ -0.5 \end{bmatrix}$ (weight matrix, $W \in \mathbb{R}^{2 \times 1}$)
 * Bias: $b = 0$
-* True label: $y = 1$
 
 1. Compute pre-activation:
 

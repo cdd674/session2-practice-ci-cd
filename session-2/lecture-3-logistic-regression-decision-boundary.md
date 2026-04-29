@@ -96,7 +96,7 @@ $$
 
 This equation defines the decision boundary.
 
-#### In 2-D settings:
+#### In 2-D/2-features settings:
 
 The decision boundary is a line, and has math formulation:
 
