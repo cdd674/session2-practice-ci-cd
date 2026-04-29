@@ -107,7 +107,8 @@ For regression and binary classification with batch size $n$:
 
 | Symbol | Meaning |
 |--------|---------|
-| $\mathcal{L}$ | Loss function |
+| $\mathcal{L}$ | Loss function (average over all samples) |
+| $\ell^{(i)}$ | Per-example loss for sample $i$ |
 | $\frac{\partial \mathcal{L}}{\partial W}$ | Gradient of loss w.r.t. weights |
 | $\delta^{(l)}$ | Error signal at layer $l$ |
 | $\sigma(\cdot)$ | Sigmoid activation function |

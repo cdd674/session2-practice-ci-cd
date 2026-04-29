@@ -174,6 +174,13 @@ $$
 \frac{\partial \hat{y}^{(i)}}{\partial z^{(i)}} = \hat{y}^{(i)}(1 - \hat{y}^{(i)})
 $$
 
+Here we can combine the first two partial derivatives to get the gradient w.r.t. the pre-activation:
+
+$$
+\frac{\partial \ell^{(i)}}{\partial z^{(i)}} = \frac{\partial \ell^{(i)}}{\partial \hat{y}^{(i)}} \cdot \frac{\partial \hat{y}^{(i)}}{\partial z^{(i)}} = -(\frac{y^{(i)}}{\hat{y}^{(i)}} - \frac{1 - y^{(i)}}{1 - \hat{y}^{(i)}}) \cdot \hat{y}^{(i)}(1 - \hat{y}^{(i)}) = \hat{y}^{(i)} - y^{(i)}
+$$
+
+
 **Third**, because:
 
 $$
@@ -192,7 +199,7 @@ $$
 \frac{\partial \ell^{(i)}}{\partial W} = -\left( \frac{y^{(i)}}{\hat{y}^{(i)}} - \frac{1 - y^{(i)}}{1 - \hat{y}^{(i)}} \right) \cdot \hat{y}^{(i)}(1 - \hat{y}^{(i)}) \cdot x^{(i)\mathsf{T}}
 $$
 
-After simplification, the complex terms collapse beautifully into:
+After simplification, the complex terms *collapse* beautifully into:
 
 $$
 \frac{\partial \ell^{(i)}}{\partial W} = x^{(i)\mathsf{T}}(\hat{y}^{(i)} - y^{(i)})
@@ -238,25 +245,15 @@ The key insight is that although Logistic Regression combines:
 - sigmoid nonlinearity
 - logarithmic loss
 
-the final gradient simplifies to:
+Notice that the batch gradient formulas:
 
 $$
-\hat{y} - y
-$$
-
-This elegant simplification is why Sigmoid + Binary Cross-Entropy is such a powerful pairing: mathematically clean, computationally efficient, and ideal for binary classification.
-
-
-
-You'll notice that for the derivatives $\frac{\partial \mathcal{L}}{\partial W}$ and $\frac{\partial \mathcal{L}}{\partial b}$ we have:
-
-$$
-\frac{\partial \mathcal{L}}{\partial W} = \frac{1}{n} X^{\mathsf{T}} \cdot (\hat{Y} - Y)
+\frac{\partial \mathcal{L}}{\partial W} = \frac{1}{n} X^{\mathsf{T}} (\hat{Y} - Y)
 $$
 
 $$
 \frac{\partial \mathcal{L}}{\partial b} = \frac{1}{n} \sum_{i=1}^{n} (\hat{y}^{(i)} - y^{(i)})
 $$
 
-These formulas look remarkably similar to the ones used for Linear Regression (1/n for logistic regression, 2 for linear regression), which is a **beautiful** result of using cross-entropy loss with the sigmoid activation function.
+are remarkably similar to those in Linear Regression (the only difference being the factor of $2$ vs $1$ from the different loss functions). This elegant simplification is why Sigmoid + Binary Cross-Entropy is such a powerful pairing: mathematically clean, computationally efficient, and ideal for binary classification.
 

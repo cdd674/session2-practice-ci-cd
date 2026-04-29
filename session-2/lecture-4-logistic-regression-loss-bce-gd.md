@@ -23,7 +23,7 @@ $$
 The true label is binary:
 
 $$
-y \in {0, 1}
+y \in \{0, 1\}
 $$
 
 Our goal is to **adjust $W$ and $b$ such that predicted probabilities $\hat{y}$ match the true labels $y$** as closely as possible across all samples.
@@ -47,18 +47,7 @@ At first glance, this seems reasonable: $\hat{y}$ is a number, $y$ is a number, 
 
 However, MSE is **not suitable for probabilities**. Here's why:
 
-### 2.1 Weak gradients at extremes
-
-* The sigmoid function flattens at large positive or negative $z$:
-
-$$
-\sigma(z) \to 1 \text{ as } z \to +\infty, \quad \sigma(z) \to 0 \text{ as } z \to -\infty
-$$
-
-* When the prediction is extremely confident but wrong, the derivative of MSE w.r.t $z$ becomes very small.
-* The model learns slowly or can even get stuck.
-
-### 2.2 Poor feedback for wrong predictions
+### 2.1 Poor feedback for wrong predictions
 
 Let's derive the gradient of MSE w.r.t. the pre-activation $z$ to understand why the feedback is weak.
 
@@ -123,7 +112,7 @@ $$
 
 Notice how **the correction signal is tiny** ($\approx -0.02$) despite being a huge mistake (loss $\approx 0.98$; true label 1 while prediction is 0.01). This is because the sigmoid derivative $\hat{y}(1 - \hat{y})$ becomes very small when $\hat{y}$ is near 0 or 1, causing the gradient to vanish and slowing down learning drastically.
 
-### 2.3 Ignores probability semantics (optional)
+### 2.2 Ignores probability semantics (optional)
 
 MSE treats $\hat{y}$ as a raw number. But $\hat{y}$ is a **probability**. We want a loss function that:
 
@@ -177,16 +166,16 @@ Notice how **BCE penalizes wrong confident predictions sharply**, giving strong 
 ## 4. Gradient of BCE
 
 
-For a single sample:
+For a single sample, the per-example BCE loss is:
 
 $$
-\mathcal{L}_i = - \big( y \log \hat{y} + (1-y)\log(1-\hat{y}) \big)
+\ell^{(i)} = - \big( y^{(i)} \log \hat{y}^{(i)} + (1-y^{(i)})\log(1-\hat{y}^{(i)}) \big)
 $$
 
-Gradient w.r.t $z$ (pre-activation):
+Gradient w.r.t $z^{(i)}$ (pre-activation):
 
 $$
-\frac{\partial \mathcal{L}_i}{\partial z} = \hat{y} - y
+\frac{\partial \ell^{(i)}}{\partial z^{(i)}} = \hat{y}^{(i)} - y^{(i)}
 $$
 
 **Remark:** This is extremely elegant:
@@ -201,13 +190,13 @@ $$
 
 Since $z = x W + b$:
 
-* Gradient w.r.t weights:
+* Gradient w.r.t weights (per-example):
 
 $$
-\frac{\partial \mathcal{L}_i}{\partial W} = x^{\mathsf{T}} (\hat{y} - y)
+\frac{\partial \ell^{(i)}}{\partial W} = x^{(i)\mathsf{T}} (\hat{y}^{(i)} - y^{(i)})
 $$
 
-For the batch:
+For the full batch:
 
 $$
 \frac{\partial \mathcal{L}}{\partial W} = \frac{1}{n} \sum_{i=1}^{n} x^{(i)\mathsf{T}} (\hat{y}^{(i)} - y^{(i)})
@@ -219,13 +208,13 @@ $$
 \boxed{\frac{\partial \mathcal{L}}{\partial W} = \frac{1}{n} X^{\mathsf{T}} (\hat{Y} - Y)}
 $$
 
-* Gradient w.r.t bias:
+* Gradient w.r.t bias (per-example):
 
 $$
-\frac{\partial \mathcal{L}_i}{\partial b} = \hat{y} - y
+\frac{\partial \ell^{(i)}}{\partial b} = \hat{y}^{(i)} - y^{(i)}
 $$
 
-For the batch:
+For the full batch:
 
 $$
 \frac{\partial \mathcal{L}}{\partial b} = \frac{1}{n} \sum_{i=1}^{n} (\hat{y}^{(i)} - y^{(i)})

@@ -19,7 +19,7 @@ This is a probability.
 But classification requires a decision:
 
 $$
-y \in {0, 1}
+y \in \{0, 1\}
 $$
 
 So we need a rule to convert probability into a label.

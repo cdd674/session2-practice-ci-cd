@@ -32,7 +32,7 @@ Example:
 The label is:
 
 $$
-y \in {0, 1}
+y \in \{0, 1\}
 $$
 
 But linear regression gives:
