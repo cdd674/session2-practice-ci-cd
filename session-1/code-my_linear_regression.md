@@ -1,150 +1,105 @@
-# Simple Linear Regression from Scratch
+# Linear Regression from Scratch
 
-## Introduction
+## The Model
 
-In this tutorial, we will explore the mathematical foundations of simple linear regression, implement it from scratch using Python and NumPy.
-
-## Mathematical Foundations
-
-### The Linear Model
-
-At the core of linear regression is the linear model using the **row-vector convention**:
+Under the **row-vector convention**, the linear regression model for a single sample is:
 
 $$
-y = x W + b
+\hat{y}^{(i)} = x^{(i)} W + b
 $$
 
-- $y$: Predicted value (scalar)
-- $x \in \mathbb{R}^{1 \times d}$: Input feature row vector
-- $W \in \mathbb{R}^{d \times 1}$: Weight matrix
-- $b \in \mathbb{R}^{1 \times 1}$: Bias (scalar as row vector)
+where:
 
-The objective is to find the optimal weights $W$ and bias $b$ that minimize the difference between the predicted values and the actual target values.
+- $x^{(i)} \in \mathbb{R}^{1 \times d}$ is the input row vector
+- $W \in \mathbb{R}^{d \times 1}$ is the weight matrix
+- $b \in \mathbb{R}^{1 \times 1}$ is the bias
+- $\hat{y}^{(i)}$ is the predicted scalar value
 
-<details>
-<summary>❓ Can a linear model capture non-linear relationships in data? Why or why not?</summary>
+The goal is to learn $W$ and $b$ so that predictions match the true targets $y^{(i)}$ as closely as possible.
 
-A standard linear model cannot directly capture non-linear relationships in data, but there are important nuances to understand:
+## Loss Function
 
-1. **Fundamental Limitation**: By definition, a linear model can only produce outputs that are linear combinations of its inputs, which means it can only fit straight lines or hyperplanes.
-
-2. **Linear Decision Boundaries**: Linear models can only create linear decision boundaries, making them unable to capture curved or complex patterns in data.
-
-3. **Feature Engineering Workaround**: However, we can indirectly model non-linear relationships by:
-   - Adding polynomial features (x², x³, etc.)
-   - Creating interaction terms (x₁×x₂)
-   - Applying non-linear transformations (log(x), sin(x), etc.)
-
-For truly complex patterns, non-linear models (decision trees, neural networks) are more appropriate.
-</details><br>
-
-### Cost Function
-
-To quantify the difference between predicted and actual values, we use the Mean Squared Error (MSE) as the cost function:
+We use **Mean Squared Error (MSE)** to measure prediction error over all $n$ samples:
 
 $$
 \mathcal{L}(W, b) = \frac{1}{n} \sum_{i=1}^{n} (\hat{y}^{(i)} - y^{(i)})^2
 $$
 
-Where:
-- $n$: Number of samples
-- $y^{(i)}$: Actual target value for the $i$-th sample
-- $x^{(i)} \in \mathbb{R}^{1 \times d}$: Input feature row vector for the $i$-th sample
-
-### Gradient Descent
-
-To minimize the cost function $\mathcal{L}(W, b)$, we employ the Gradient Descent optimization algorithm. Gradient Descent iteratively updates the weights and bias in the direction that reduces the cost.
-
-<details>
-<summary>❓ What's the intuition behind gradient descent and why does it work?</summary>
-
-Gradient descent works like walking downhill to reach the valley:
-
-1. The gradient points in the steepest uphill direction
-2. Taking steps in the negative gradient direction moves toward lower cost
-3. Steps get smaller near the minimum as the gradient approaches zero
-4. For convex functions (like MSE), this guarantees finding the global minimum
-
-</details><br>
-
-The gradients of the cost function with respect to the weights and bias are:
+For one sample, define the per-example squared error:
 
 $$
-\frac{\partial \mathcal{L}}{\partial W} = \frac{2}{n} \sum_{i=1}^{n} x^{(i)\mathsf{T}} (\hat{y}^{(i)} - y^{(i)})
+\ell^{(i)} = (\hat{y}^{(i)} - y^{(i)})^2
 $$
 
-$$
-\frac{\partial \mathcal{L}}{\partial b} = \frac{2}{n} \sum_{i=1}^{n} (\hat{y}^{(i)} - y^{(i)})
-$$
+so that $\mathcal{L} = \frac{1}{n} \sum_{i=1}^{n} \ell^{(i)}$.
 
-## How are these gradient equations derived from the cost function?
+## Gradient Derivation
 
-Deriving the gradient equations from the MSE cost function involves applying calculus to find the partial derivatives. Here's the step-by-step derivation:
-
-Starting with the MSE loss function:
-
-$$\mathcal{L}(W, b) = \frac{1}{n} \sum_{i=1}^{n} (\hat{y}^{(i)} - y^{(i)})^2$$
-
-where $\hat{y}^{(i)} = x^{(i)} W + b$ is the prediction.
-
-**1. Derivation of $\frac{\partial \mathcal{L}}{\partial W}$:**
-
-Applying the chain rule:
-
-$$\frac{\partial \mathcal{L}}{\partial W} = \frac{\partial \mathcal{L}}{\partial \hat{y}^{(i)}} \cdot \frac{\partial \hat{y}^{(i)}}{\partial W}$$
-
-First part:
-$$\frac{\partial \mathcal{L}}{\partial \hat{y}^{(i)}} = \frac{\partial}{\partial \hat{y}^{(i)}} \frac{1}{n} \sum_{i=1}^{n} (\hat{y}^{(i)} - y^{(i)})^2$$
-
-$$= \frac{1}{n} \sum_{i=1}^{n} \frac{\partial}{\partial \hat{y}^{(i)}} (\hat{y}^{(i)} - y^{(i)})^2$$
-
-$$= \frac{1}{n} \sum_{i=1}^{n} 2(\hat{y}^{(i)} - y^{(i)})$$
-
-$$= \frac{2}{n} \sum_{i=1}^{n} (\hat{y}^{(i)} - y^{(i)})$$
-
-Second part:
-$$\frac{\partial \hat{y}^{(i)}}{\partial W} = \frac{\partial}{\partial W} (x^{(i)} W + b) = x^{(i)\mathsf{T}}$$
-
-Combining:
-$$\frac{\partial \mathcal{L}}{\partial W} = \frac{2}{n} \sum_{i=1}^{n} (\hat{y}^{(i)} - y^{(i)}) \cdot x^{(i)\mathsf{T}}$$
-
-$$= \frac{2}{n} \sum_{i=1}^{n} x^{(i)\mathsf{T}} (\hat{y}^{(i)} - y^{(i)})$$
-
-**2. Derivation of $\frac{\partial \mathcal{L}}{\partial b}$:**
-
-Similarly:
-$$\frac{\partial \mathcal{L}}{\partial b} = \frac{\partial \mathcal{L}}{\partial \hat{y}^{(i)}} \cdot \frac{\partial \hat{y}^{(i)}}{\partial b}$$
-
-We already calculated the first part. For the second part:
-$$\frac{\partial \hat{y}^{(i)}}{\partial b} = \frac{\partial}{\partial b} (x^{(i)} W + b) = 1$$
-
-Combining:
-$$\frac{\partial \mathcal{L}}{\partial b} = \frac{2}{n} \sum_{i=1}^{n} (\hat{y}^{(i)} - y^{(i)}) \cdot 1$$
-
-$$= \frac{2}{n} \sum_{i=1}^{n} (\hat{y}^{(i)} - y^{(i)})$$
-
-
-Using these gradients, the update rules for weights and bias are:
+Because the loss depends on $W$ through:
 
 $$
-W \leftarrow W - \eta \times \frac{\partial \mathcal{L}}{\partial W}
+W \rightarrow \hat{y}^{(i)} \rightarrow \ell^{(i)}
+$$
+
+we apply the chain rule.
+
+### Per-example gradients
+
+**First**, the derivative of the per-example loss w.r.t. the prediction:
+
+$$
+\frac{\partial \ell^{(i)}}{\partial \hat{y}^{(i)}} = 2(\hat{y}^{(i)} - y^{(i)})
+$$
+
+**Second**, the derivative of the prediction w.r.t. the parameters:
+
+$$
+\frac{\partial \hat{y}^{(i)}}{\partial W} = x^{(i)\mathsf{T}}
 $$
 
 $$
-b \leftarrow b - \eta \times \frac{\partial \mathcal{L}}{\partial b}
+\frac{\partial \hat{y}^{(i)}}{\partial b} = 1
 $$
 
-Where $\eta$ is the learning rate, a hyperparameter that controls the step size in each update.
+**Substituting:**
 
+$$
+\frac{\partial \ell^{(i)}}{\partial W} = 2 x^{(i)\mathsf{T}} (\hat{y}^{(i)} - y^{(i)})
+$$
 
-## Implementing Linear Regression in Python
+$$
+\frac{\partial \ell^{(i)}}{\partial b} = 2 (\hat{y}^{(i)} - y^{(i)})
+$$
 
-Let's implement the linear regression model from scratch using Python and NumPy. We will start with a basic implementation and then enhance it for better performance and usability.
+### Batch gradients
 
+Averaging across all samples:
 
-### Initial Implementation
+$$
+\frac{\partial \mathcal{L}}{\partial W} = \frac{2}{n} \sum_{i=1}^{n} x^{(i)\mathsf{T}} (\hat{y}^{(i)} - y^{(i)}) = \frac{2}{n} X^{\mathsf{T}} (\hat{Y} - Y)
+$$
 
-Below is the initial implementation of the `MyOwnLinearRegression` class, which includes methods for fitting the model to data and making predictions.
+$$
+\frac{\partial \mathcal{L}}{\partial b} = \frac{2}{n} \sum_{i=1}^{n} (\hat{y}^{(i)} - y^{(i)}) = \frac{2}{n} \mathbf{1}^{\mathsf{T}} (\hat{Y} - Y)
+$$
+
+where $X \in \mathbb{R}^{n \times d}$, $\hat{Y}, Y \in \mathbb{R}^{n \times 1}$, and $\mathbf{1} \in \mathbb{R}^{n \times 1}$ is a column vector of ones.
+
+## Gradient Descent Update
+
+With learning rate $\eta$:
+
+$$
+W \leftarrow W - \eta \frac{\partial \mathcal{L}}{\partial W}
+$$
+
+$$
+b \leftarrow b - \eta \frac{\partial \mathcal{L}}{\partial b}
+$$
+
+## Implementation
+
+Let's implement the model from scratch using Python and NumPy.
 
 ```python
 %matplotlib inline
