@@ -78,7 +78,9 @@ $$
 ## 4. The decision boundary
 
 
+
 ![](./img/decisionboundary2.jpg)
+
 
 The boundary occurs when the model is uncertain:
 
@@ -94,13 +96,24 @@ $$
 
 This equation defines the decision boundary.
 
+#### In 2-D settings:
+
+The decision boundary is a line, and has math formulation:
+
+$$w_1 x_1 + w_2 x_2 + b = 0$$
+
+which is equivalent to (back to high school/middle school algebra):
+
+$$x_2 = -\frac{w_1}{w_2} x_1 - \frac{b}{w_2}$$
+
+
 ---
 
 ## 5. Important insight
 
 
-
 ![](./img/logisticregressionanimatedgif4.gif)
+
 
 
 Even though the model uses a nonlinear function:

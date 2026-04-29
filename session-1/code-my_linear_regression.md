@@ -43,7 +43,7 @@ For truly complex patterns, non-linear models (decision trees, neural networks) 
 To quantify the difference between predicted and actual values, we use the Mean Squared Error (MSE) as the cost function:
 
 $$
-\mathcal{L}(W, b) = \frac{1}{n} \sum_{i=1}^{n} (y^{(i)} - (x^{(i)} W + b))^2
+\mathcal{L}(W, b) = \frac{1}{n} \sum_{i=1}^{n} (\hat{y}^{(i)} - y^{(i)})^2
 $$
 
 Where:
@@ -70,11 +70,11 @@ Gradient descent works like walking downhill to reach the valley:
 The gradients of the cost function with respect to the weights and bias are:
 
 $$
-\frac{\partial \mathcal{L}}{\partial W} = -\frac{2}{n} \sum_{i=1}^{n} x^{(i)\mathsf{T}} (y^{(i)} - x^{(i)} W - b)
+\frac{\partial \mathcal{L}}{\partial W} = \frac{2}{n} \sum_{i=1}^{n} x^{(i)\mathsf{T}} (\hat{y}^{(i)} - y^{(i)})
 $$
 
 $$
-\frac{\partial \mathcal{L}}{\partial b} = -\frac{2}{n} \sum_{i=1}^{n} (y^{(i)} - x^{(i)} W - b)
+\frac{\partial \mathcal{L}}{\partial b} = \frac{2}{n} \sum_{i=1}^{n} (\hat{y}^{(i)} - y^{(i)})
 $$
 
 ## How are these gradient equations derived from the cost function?
@@ -83,9 +83,9 @@ Deriving the gradient equations from the MSE cost function involves applying cal
 
 Starting with the MSE loss function:
 
-$$\mathcal{L}(W, b) = \frac{1}{n} \sum_{i=1}^{n} (y^{(i)} - (x^{(i)} W + b))^2$$
+$$\mathcal{L}(W, b) = \frac{1}{n} \sum_{i=1}^{n} (\hat{y}^{(i)} - y^{(i)})^2$$
 
-Let's use the shorthand $\hat{y}^{(i)} = x^{(i)} W + b$ for the prediction.
+where $\hat{y}^{(i)} = x^{(i)} W + b$ is the prediction.
 
 **1. Derivation of $\frac{\partial \mathcal{L}}{\partial W}$:**
 
@@ -94,21 +94,21 @@ Applying the chain rule:
 $$\frac{\partial \mathcal{L}}{\partial W} = \frac{\partial \mathcal{L}}{\partial \hat{y}^{(i)}} \cdot \frac{\partial \hat{y}^{(i)}}{\partial W}$$
 
 First part:
-$$\frac{\partial \mathcal{L}}{\partial \hat{y}^{(i)}} = \frac{\partial}{\partial \hat{y}^{(i)}} \frac{1}{n} \sum_{i=1}^{n} (y^{(i)} - \hat{y}^{(i)})^2$$
+$$\frac{\partial \mathcal{L}}{\partial \hat{y}^{(i)}} = \frac{\partial}{\partial \hat{y}^{(i)}} \frac{1}{n} \sum_{i=1}^{n} (\hat{y}^{(i)} - y^{(i)})^2$$
 
-$$= \frac{1}{n} \sum_{i=1}^{n} \frac{\partial}{\partial \hat{y}^{(i)}} (y^{(i)} - \hat{y}^{(i)})^2$$
+$$= \frac{1}{n} \sum_{i=1}^{n} \frac{\partial}{\partial \hat{y}^{(i)}} (\hat{y}^{(i)} - y^{(i)})^2$$
 
-$$= \frac{1}{n} \sum_{i=1}^{n} 2(y^{(i)} - \hat{y}^{(i)})(-1)$$
+$$= \frac{1}{n} \sum_{i=1}^{n} 2(\hat{y}^{(i)} - y^{(i)})$$
 
-$$= -\frac{2}{n} \sum_{i=1}^{n} (y^{(i)} - \hat{y}^{(i)})$$
+$$= \frac{2}{n} \sum_{i=1}^{n} (\hat{y}^{(i)} - y^{(i)})$$
 
 Second part:
 $$\frac{\partial \hat{y}^{(i)}}{\partial W} = \frac{\partial}{\partial W} (x^{(i)} W + b) = x^{(i)\mathsf{T}}$$
 
 Combining:
-$$\frac{\partial \mathcal{L}}{\partial W} = -\frac{2}{n} \sum_{i=1}^{n} (y^{(i)} - \hat{y}^{(i)}) \cdot x^{(i)\mathsf{T}}$$
+$$\frac{\partial \mathcal{L}}{\partial W} = \frac{2}{n} \sum_{i=1}^{n} (\hat{y}^{(i)} - y^{(i)}) \cdot x^{(i)\mathsf{T}}$$
 
-$$= -\frac{2}{n} \sum_{i=1}^{n} x^{(i)\mathsf{T}} (y^{(i)} - x^{(i)} W - b)$$
+$$= \frac{2}{n} \sum_{i=1}^{n} x^{(i)\mathsf{T}} (\hat{y}^{(i)} - y^{(i)})$$
 
 **2. Derivation of $\frac{\partial \mathcal{L}}{\partial b}$:**
 
@@ -119,9 +119,9 @@ We already calculated the first part. For the second part:
 $$\frac{\partial \hat{y}^{(i)}}{\partial b} = \frac{\partial}{\partial b} (x^{(i)} W + b) = 1$$
 
 Combining:
-$$\frac{\partial \mathcal{L}}{\partial b} = -\frac{2}{n} \sum_{i=1}^{n} (y^{(i)} - \hat{y}^{(i)}) \cdot 1$$
+$$\frac{\partial \mathcal{L}}{\partial b} = \frac{2}{n} \sum_{i=1}^{n} (\hat{y}^{(i)} - y^{(i)}) \cdot 1$$
 
-$$= -\frac{2}{n} \sum_{i=1}^{n} (y^{(i)} - x^{(i)} W - b)$$
+$$= \frac{2}{n} \sum_{i=1}^{n} (\hat{y}^{(i)} - y^{(i)})$$
 
 
 Using these gradients, the update rules for weights and bias are:

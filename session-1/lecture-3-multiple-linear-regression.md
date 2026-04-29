@@ -98,7 +98,7 @@ We compute gradients with respect to all parameters.
 For each weight $w_j$:
 
 $$
-\frac{\partial \mathcal{L}}{\partial w_j} = \frac{2}{n} \sum_{i=1}^n (\hat{y}^{(i)} - y^{(i)}) x_j^{(i)}
+\boxed{\frac{\partial \mathcal{L}}{\partial w_j} = \frac{2}{n} \sum_{i=1}^n (\hat{y}^{(i)} - y^{(i)}) x_j^{(i)}}
 $$
 
 In matrix form:

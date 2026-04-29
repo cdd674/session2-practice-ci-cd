@@ -130,10 +130,10 @@ $$
 
 where $\hat{y}^{(i)}$ is the predicted probability that sample $i$ belongs to class 1.
 
-To measure how well predictions match true labels, we use Binary Cross-Entropy Loss over all $m$ samples:
+To measure how well predictions match true labels, we use Binary Cross-Entropy Loss over all $n$ samples:
 
 $$
-\mathcal{L}(W, b) = -\frac{1}{m} \sum_{i=1}^{m} \left[ y^{(i)} \log \hat{y}^{(i)} + (1 - y^{(i)}) \log(1 - \hat{y}^{(i)}) \right]
+\mathcal{L}(W, b) = -\frac{1}{n} \sum_{i=1}^{n} \left[ y^{(i)} \log \hat{y}^{(i)} + (1 - y^{(i)}) \log(1 - \hat{y}^{(i)}) \right]
 $$
 
 To perform Gradient Descent, we need:
@@ -248,85 +248,15 @@ This elegant simplification is why Sigmoid + Binary Cross-Entropy is such a powe
 
 
 
-You'll notice that for the derivatives $dW$ and $db$ we have:
+You'll notice that for the derivatives $\frac{\partial \mathcal{L}}{\partial W}$ and $\frac{\partial \mathcal{L}}{\partial b}$ we have:
 
 $$
-dW = \frac{1}{n} X^{\mathsf{T}} \cdot (\hat{Y} - Y)
+\frac{\partial \mathcal{L}}{\partial W} = \frac{1}{n} X^{\mathsf{T}} \cdot (\hat{Y} - Y)
 $$
 
 $$
-db = \frac{1}{n} \sum_{i=1}^{n} (\hat{y}^{(i)} - y^{(i)})
+\frac{\partial \mathcal{L}}{\partial b} = \frac{1}{n} \sum_{i=1}^{n} (\hat{y}^{(i)} - y^{(i)})
 $$
 
-These formulas look remarkably similar to the ones used for Linear Regression, which is a **beautiful** result of using cross-entropy loss with the sigmoid activation function.
+These formulas look remarkably similar to the ones used for Linear Regression (1/n for logistic regression, 2 for linear regression), which is a **beautiful** result of using cross-entropy loss with the sigmoid activation function.
 
-
-
-## Testing the Gradient Descent Implementation
-
-Let's test our implementation on a simple classification dataset:
-
-```python
-# Import necessary libraries
-import matplotlib.pyplot as plt
-from sklearn import datasets
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-
-# Generate a simple classification dataset
-X, y = datasets.make_classification(
-    n_samples=100, n_features=2, n_redundant=0, 
-    n_informative=2, random_state=1, n_clusters_per_class=1
-)
-
-# Split the data into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42
-)
-
-# Create and train the logistic regression model
-model = MyOwnLogisticRegressionGD(learning_rate=0.01, n_iters=1000)
-model.fit(X_train, y_train)
-
-# Make predictions
-y_pred = model.predict(X_test)
-
-# Calculate accuracy
-accuracy = accuracy_score(y_test, y_pred)
-print(f"Accuracy: {accuracy:.4f}")
-
-# Visualize the results
-def plot_decision_boundary(X, y, model):
-    # Define the bounds of the plot
-    x_min, x_max = X[:, 0].min() - 0.5, X[:, 0].max() + 0.5
-    y_min, y_max = X[:, 1].min() - 0.5, X[:, 1].max() + 0.5
-    
-    # Create a mesh grid
-    xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.01),
-                         np.arange(y_min, y_max, 0.01))
-    
-    # Make predictions on the mesh grid
-    Z = model.predict(np.c_[xx.ravel(), yy.ravel()])
-    Z = Z.reshape(xx.shape)
-    
-    # Create a contour plot
-    plt.contourf(xx, yy, Z, alpha=0.3)
-    
-    # Plot the training points
-    plt.scatter(X[:, 0], X[:, 1], c=y, edgecolor='k', s=50)
-    plt.title('Logistic Regression Decision Boundary')
-    plt.xlabel('Feature 1')
-    plt.ylabel('Feature 2')
-    plt.show()
-
-# Plot the decision boundary
-plot_decision_boundary(X, y, model)
-```
-
-You should be able to see the decision boundary is a line, and has math formulation:
-
-$$w_1 x_1 + w_2 x_2 + b = 0$$
-
-which is equivalent to:
-
-$$x_2 = -\frac{w_1}{w_2} x_1 - \frac{b}{w_2}$$
