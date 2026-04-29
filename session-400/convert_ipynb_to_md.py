@@ -1,6 +1,7 @@
 from pathlib import Path
 import subprocess
 import sys
+import os
 
 
 def convert_ipynb_to_md():
@@ -22,7 +23,7 @@ def convert_ipynb_to_md():
         try:
             print(f"Converting: {ipynb_file.name} -> {md_file.name}")
 
-            # Disable problematic contrib nbextensions exporters
+            # Force exclude ALL outputs
             subprocess.run(
                 [
                     sys.executable,
@@ -32,12 +33,12 @@ def convert_ipynb_to_md():
                     "--to",
                     "markdown",
                     str(ipynb_file),
-                    "--Exporter.exclude_input_prompt=True",
-                    "--Exporter.exclude_output_prompt=True",
+                    "--no-prompt",
+                    "--ClearOutputPreprocessor.enabled=True",
                 ],
                 check=True,
                 env={
-                    **dict(__import__("os").environ),
+                    **os.environ,
                     "JUPYTER_PATH": "",
                     "JUPYTER_CONFIG_DIR": "",
                 },
@@ -50,7 +51,7 @@ def convert_ipynb_to_md():
                 f"nbconvert failed for {ipynb_file.name}, trying manual conversion..."
             )
 
-            # Fallback: pure python conversion without nbconvert CLI
+            # Fallback: pure python conversion without outputs
             try:
                 import nbformat
 
@@ -61,12 +62,14 @@ def convert_ipynb_to_md():
                 for cell in nb.cells:
                     if cell.cell_type == "markdown":
                         lines.append(cell.source)
-                        lines.append("\n")
+                        lines.append("")
+
                     elif cell.cell_type == "code":
+                        # Only source code, NO outputs
                         lines.append("```python")
                         lines.append(cell.source)
                         lines.append("```")
-                        lines.append("\n")
+                        lines.append("")
 
                 md_file.write_text("\n".join(lines), encoding="utf-8")
 
