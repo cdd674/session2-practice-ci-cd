@@ -385,7 +385,7 @@ Neural networks train using **mini-batch gradient descent**.
 Instead of computing the gradient on the entire dataset:
 
 $$
-\nabla L = \frac{1}{N} \sum_{i=1}^{N} g_i
+\nabla L = \frac{1}{n} \sum_{i=1}^{n} g_i
 $$
 
 we estimate it using a **mini-batch**:

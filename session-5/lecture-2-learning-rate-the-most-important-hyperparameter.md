@@ -19,7 +19,7 @@ $$
 
 In row-vector notation for a linear layer:
 $$
-z = xW + b, \quad W^{(t+1)} = W^{(t)} - \eta \frac{\partial \mathcal{L}}{\partial W^{(t)}}
+z = xW + b, \quad W \leftarrow W - \eta \frac{\partial \mathcal{L}}{\partial W}
 $$
 
 * $W$ — model parameters (weight matrix)
@@ -75,7 +75,7 @@ $$
 Optimization is iterative — each step depends on the previous one:
 
 $$
-W^{(t+1)} = W^{(t)} - \eta \frac{\partial \mathcal{L}}{\partial W^{(t)}}
+W \leftarrow W - \eta \frac{\partial \mathcal{L}}{\partial W}
 $$
 
 * **Too small** → sluggish movement in the loss landscape

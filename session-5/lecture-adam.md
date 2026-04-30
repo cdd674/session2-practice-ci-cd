@@ -26,7 +26,7 @@ But to understand Adam, we first need to understand how optimization evolved fro
 Standard gradient descent updates parameters using the gradient of the loss function:
 
 $$
-W^{(t+1)} = W^{(t)} - \eta \frac{\partial \mathcal{L}}{\partial W^{(t)}}
+W \leftarrow W - \eta \frac{\partial \mathcal{L}}{\partial W}
 $$
 
 In row-vector notation for a linear layer:
@@ -61,7 +61,7 @@ For large datasets, this becomes extremely expensive.
 Instead of using the entire dataset, **Stochastic Gradient Descent (SGD)** estimates the gradient using a **small random batch**.
 
 $$
-W^{(t+1)} = W^{(t)} - \eta g^{(t)}
+W \leftarrow W - \eta g
 $$
 
 where
@@ -150,7 +150,7 @@ $$
 Then update parameters:
 
 $$
-W^{(t+1)} = W^{(t)} - \eta v^{(t)}
+W \leftarrow W - \eta v
 $$
 
 
@@ -245,7 +245,7 @@ $$
 
 Adam updates parameters using:
 
-$$W^{(t+1)} = W^{(t)} - \eta \frac{m^{(t)}}{\sqrt{v^{(t)}} + \epsilon}$$
+$$W \leftarrow W - \eta \frac{m}{\sqrt{v} + \epsilon}$$
 
 Where:
 - $m^{(t)}$ — moving average of gradients
@@ -357,7 +357,7 @@ $$
 
 The final update rule with bias correction becomes:
 
-$$W^{(t+1)} = W^{(t)} - \eta \frac{\hat{m}^{(t)}}{\sqrt{\hat{v}^{(t)}} + \epsilon}$$
+$$W \leftarrow W - \eta \frac{\hat{m}}{\sqrt{\hat{v}} + \epsilon}$$
 
 This improves early training stability.
 

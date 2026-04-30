@@ -7,7 +7,7 @@
 From the previous lecture, mini-batch gradient descent (SGD) updates parameters as:
 
 $$
-W^{(t+1)} = W^{(t)} - \eta \frac{1}{B} \sum_{i \in \mathcal{B}} \frac{\partial \mathcal{L}_i}{\partial W^{(t)}}
+W \leftarrow W - \eta \frac{1}{B} \sum_{i \in \mathcal{B}} \frac{\partial \mathcal{L}_i}{\partial W}
 $$
 
 * Efficient for large datasets
@@ -39,11 +39,11 @@ We want:
 Momentum introduces a **velocity term** $v$:
 
 $$
-v^{(t+1)} = \beta v^{(t)} + (1 - \beta) \frac{1}{B} \sum_{i \in \mathcal{B}} \frac{\partial \mathcal{L}_i}{\partial W^{(t)}}
+v \leftarrow \beta v + (1 - \beta) \frac{1}{B} \sum_{i \in \mathcal{B}} \frac{\partial \mathcal{L}_i}{\partial W}
 $$
 
 $$
-W^{(t+1)} = W^{(t)} - \eta v^{(t+1)}
+W \leftarrow W - \eta v
 $$
 
 In row-vector notation for a linear layer:

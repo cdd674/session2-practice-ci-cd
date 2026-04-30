@@ -25,7 +25,7 @@ This leads to **Adam (Adaptive Moment Estimation)**.
 For reference, mini-batch gradient descent updates parameters as:
 
 $$
-W^{(t+1)} = W^{(t)} - \eta g^{(t)}, \quad g^{(t)} = \frac{1}{B} \sum_{i \in \mathcal{B}} \frac{\partial \mathcal{L}_i}{\partial W^{(t)}}
+W \leftarrow W - \eta g, \quad g = \frac{1}{B} \sum_{i \in \mathcal{B}} \frac{\partial \mathcal{L}_i}{\partial W}
 $$
 
 In row-vector notation for a linear layer:
@@ -90,7 +90,7 @@ $$
 Parameter update:
 
 $$
-W^{(t+1)} = W^{(t)} - \eta \frac{\hat{m}^{(t)}}{\sqrt{\hat{v}^{(t)}} + \epsilon}
+W \leftarrow W - \eta \frac{\hat{m}}{\sqrt{\hat{v}} + \epsilon}
 $$
 
 Where:

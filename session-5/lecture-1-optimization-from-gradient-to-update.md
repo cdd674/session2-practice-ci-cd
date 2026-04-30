@@ -47,7 +47,7 @@ $$
 
 In row-vector notation for a linear layer:
 $$
-z = xW + b, \quad W^{(t+1)} = W^{(t)} - \eta \frac{\partial \mathcal{L}}{\partial W^{(t)}}
+z = xW + b, \quad W \leftarrow W - \eta \frac{\partial \mathcal{L}}{\partial W}
 $$
 
 Where:
@@ -81,7 +81,7 @@ Computing gradients is only **information gathering**.
 **Learning happens only when we apply updates**:
 
 $$
-W^{(t+1)} = W^{(t)} - \eta \frac{\partial \mathcal{L}}{\partial W^{(t)}}
+W \leftarrow W - \eta \frac{\partial \mathcal{L}}{\partial W}
 $$
 
 Where $t$ denotes the iteration step.

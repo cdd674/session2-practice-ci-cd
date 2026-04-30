@@ -206,7 +206,7 @@ Effect:
 ## 5. Learning Rate = Adaptation Speed
 
 $$
-w_{\text{new}} = w_{\text{old}} - \alpha \frac{\partial \mathcal{L}}{\partial w}
+w \leftarrow w - \alpha \frac{\partial \mathcal{L}}{\partial w}
 $$
 
 * Large $\alpha$: unstable, overreactive

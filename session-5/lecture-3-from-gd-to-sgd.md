@@ -13,7 +13,7 @@ $$
 
 In row-vector notation for a linear layer:
 $$
-z = xW + b, \quad W^{(t+1)} = W^{(t)} - \eta \frac{\partial \mathcal{L}}{\partial W^{(t)}}
+z = xW + b, \quad W \leftarrow W - \eta \frac{\partial \mathcal{L}}{\partial W}
 $$
 
 * $n$ — total number of training samples
