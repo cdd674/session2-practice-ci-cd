@@ -67,21 +67,3 @@ This project is for each of the students. So no need to team up.
 
 Again, the idea is to DO EVERYTHING WITH AI, even for forking, even for giving a star.
 
-
-## Step 2 of the project (Now you can team up):
-
-Use an AI tool (e.g. OpenClaw),
-
-go to:
-
-https://github.com/zhangqi444/open-forge
-
-Test the project on your environment to see if things are working well;
-
-If you find an issue, submit an issue to the repo https://github.com/zhangqi444/open-forge
-. Each time you submit an issue, maybe you can provide some justified (very well justified) improvement suggestions, in the issue.
-
-NO CHINESE CHARACTERS! EVERYTHING SHOULD BE DONE IN ENGLISH!
-
-
-
