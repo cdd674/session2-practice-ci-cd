@@ -108,10 +108,23 @@ For regression and binary classification with batch size $n$:
 For gradient descent parameter updates, use the **leftarrow** notation:
 
 $$
-W \leftarrow W - \eta \frac{\partial \mathcal{L}}{\partial W}
+g = \frac{\partial \mathcal{L}}{\partial W}, \quad W \leftarrow W - \eta g
 $$
 
 This notation clearly indicates an **in-place update** (mutating the parameter) rather than a mathematical equality or assignment. Do not use `:=` or `\gets` for parameter updates.
+
+### Optimization Algorithms
+
+| Symbol | Meaning |
+|--------|---------|
+| $g$ | Gradient (mini-batch or full-batch depending on context) |
+| $v$ | **Velocity** (momentum accumulator): $v \leftarrow \beta v + (1-\beta)g$ |
+| $m$ | **First moment** (Adam): $m \leftarrow \beta_1 m + (1-\beta_1)g$ |
+| $v$ (Adam) | **Second moment** (Adam): $v \leftarrow \beta_2 v + (1-\beta_2)g^2$ |
+| $\hat{m}, \hat{v}$ | Bias-corrected moments in Adam |
+| $\beta, \beta_1, \beta_2$ | Exponential decay rates for moving averages |
+
+> **Note on SGD terminology:** In this course, **"SGD"** refers to **Mini-batch SGD** (batch size $B$ where $1 < B \ll n$). The theoretical "One-sample SGD" or "Single-sample SGD" ($B=1$) is rarely used in practice.
 
 ### Loss and Gradients
 
@@ -120,6 +133,9 @@ This notation clearly indicates an **in-place update** (mutating the parameter) 
 | $\mathcal{L}$ | Loss function (average over all samples) |
 | $\ell^{(i)}$ | Per-example loss for sample $i$ |
 | $\frac{\partial \mathcal{L}}{\partial W}$ | Gradient of loss w.r.t. weights |
+| $g$ | **Compact gradient notation:** $g = \frac{\partial \mathcal{L}}{\partial W}$ |
+| $\mathcal{B}$ | Mini-batch (set of sample indices) |
+| $B$ | Mini-batch size ($1 < B \ll n$) |
 | $\delta^{(l)}$ | Error signal at layer $l$ |
 | $\sigma(\cdot)$ | Sigmoid activation function |
 | $\text{ReLU}(z) = \max(0, z)$ | ReLU activation function |

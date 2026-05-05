@@ -1,6 +1,6 @@
 # From Gradient to Parameter Update
 
-![](img/0.gif)
+![](./img/0.gif)
 
 ---
 
@@ -9,10 +9,10 @@
 By now, after backpropagation, we can compute the gradient of the loss $\mathcal{L}$ with respect to the parameters $W$:
 
 $$
-\frac{\partial \mathcal{L}}{\partial W}
+g = \frac{\partial \mathcal{L}}{\partial W} = \frac{1}{n} \sum_{i=1}^n \frac{\partial \mathcal{L}_i}{\partial W}
 $$
 
-This tells us **the direction in which the loss increases**.
+We denote this gradient compactly by $g$. This tells us **the direction in which the loss increases**.
 
 ---
 
@@ -41,27 +41,14 @@ Formally, we define an **update rule** to translate gradient information into pa
 
 ## 4. Gradient Descent Update Rule
 
-![](img/3.gif)
+![](./img/3.gif)
 
 
 The simplest update rule is **gradient descent (GD)**:
 
 $$
-W \leftarrow W - \eta \frac{\partial \mathcal{L}}{\partial W}
+W \leftarrow W - \eta g, \quad g = \frac{\partial \mathcal{L}}{\partial W} = \frac{1}{n} \sum_{i=1}^n \frac{\partial \mathcal{L}_i}{\partial W}
 $$
-
-In row-vector notation for a linear layer:
-$$
-z = xW + b, \quad W \leftarrow W - \eta \frac{\partial \mathcal{L}}{\partial W}
-$$
-
-Where:
-
-* $x \in \mathbb{R}^{1 \times d}$ is the input row vector
-* $W \in \mathbb{R}^{d \times d_{\text{out}}}$ is the weight matrix
-* $b \in \mathbb{R}^{1 \times d_{\text{out}}}$ is the bias row vector
-* $\eta$ = learning rate (step size)
-* $\frac{\partial \mathcal{L}}{\partial W}$ = gradient of the loss
 
 > This is the most fundamental bridge from "having a gradient" to "actually learning".
 
@@ -86,10 +73,8 @@ Computing gradients is only **information gathering**.
 **Learning happens only when we apply updates**:
 
 $$
-W \leftarrow W - \eta \frac{\partial \mathcal{L}}{\partial W}
+W \leftarrow W - \eta g
 $$
-
-Where $t$ denotes the iteration step.
 
 * Gradient alone tells us **where to go**.
 * Update rule tells us **how far to go**.
@@ -97,12 +82,37 @@ Where $t$ denotes the iteration step.
 
 ---
 
-## 7. Summary
+## 7. PyTorch Example
+
+```python
+import torch
+import torch.nn as nn
+
+# A simple linear layer: z = xW + b
+model = nn.Linear(d_in, d_out)
+
+# Loss function
+criterion = nn.MSELoss()
+
+# Optimizer: applies W <- W - eta * g
+optimizer = torch.optim.SGD(model.parameters(), lr=0.01)
+
+for X, y in dataloader:
+    optimizer.zero_grad()      # Clear old gradients
+    prediction = model(X)      # Forward pass
+    loss = criterion(prediction, y)
+    loss.backward()            # Compute g = dL/dW
+    optimizer.step()             # Apply W <- W - eta * g
+```
+
+---
+
+## 8. Summary
 
 1. Gradient gives **direction**, not learning.
 2. Update rule translates gradient into **actual parameter changes**.
 3. Gradient descent is the simplest **optimization rule**:
 
 $$
-W \leftarrow W - \eta \frac{\partial \mathcal{L}}{\partial W}
+W \leftarrow W - \eta g
 $$

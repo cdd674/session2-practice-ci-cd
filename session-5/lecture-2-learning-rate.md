@@ -1,12 +1,11 @@
-# Learning Rate: The Most Important Hyperparameter
-
+# Learning Rate
 
 First, let's open those URLs for visualization/play:
 - https://uclaacm.github.io/gradient-descent-visualiser/#playground
 
 ---
 
-## 1. Gradient Descent Review
+## 1. Review — Gradient Descent
 
 ![](./img/gd.jpg)
 
@@ -14,19 +13,10 @@ First, let's open those URLs for visualization/play:
 Recall the basic gradient descent update:
 
 $$
-W \leftarrow W - \eta \frac{\partial \mathcal{L}}{\partial W}
+g = \frac{\partial \mathcal{L}}{\partial W} = \frac{1}{n} \sum_{i=1}^n \frac{\partial \mathcal{L}_i}{\partial W}, \quad W \leftarrow W - \eta g
 $$
 
-In row-vector notation for a linear layer:
-$$
-z = xW + b, \quad W \leftarrow W - \eta \frac{\partial \mathcal{L}}{\partial W}
-$$
-
-* $W$ — model parameters (weight matrix)
-* $\eta$ — learning rate
-* $\frac{\partial \mathcal{L}}{\partial W}$ — gradient
-
-**Key insight:** The gradient indicates **direction**, while the learning rate controls **step size**. Choosing $\eta$ carefully is essential for efficient training.
+**Key insight:** The gradient indicates **direction**, while the learning rate controls **step size**. 
 
 ---
 

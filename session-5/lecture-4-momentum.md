@@ -12,12 +12,10 @@
 From the previous lecture, mini-batch gradient descent (SGD) updates parameters as:
 
 $$
-W \leftarrow W - \eta \frac{1}{B} \sum_{i \in \mathcal{B}} \frac{\partial \mathcal{L}_i}{\partial W}
+W \leftarrow W - \eta g, \quad g = \frac{1}{B} \sum_{i \in \mathcal{B}} \frac{\partial \mathcal{L}_i}{\partial W}
 $$
 
-* Efficient for large datasets
-* Introduces stochasticity (noise) in the gradient
-* Can oscillate in **narrow valleys** or **high-curvature directions**
+Mini-batch SGD is efficient for large datasets, but the stochasticity (noise) in each mini-batch gradient can cause oscillations in **narrow valleys** or **high-curvature directions**.
 
 **Problem:** Even with a good learning rate, SGD can be **slow to converge** in some directions due to oscillations.
 
@@ -45,10 +43,10 @@ We want:
 
 ## 3. Momentum Update Rule
 
-Momentum introduces a **velocity term** $v$:
+Momentum introduces a **velocity term** $v$ that smooths the gradient $g$ over time:
 
 $$
-v \leftarrow \beta v + (1 - \beta) \frac{1}{B} \sum_{i \in \mathcal{B}} \frac{\partial \mathcal{L}_i}{\partial W}
+v \leftarrow \beta v + (1 - \beta) g
 $$
 
 $$
@@ -57,12 +55,13 @@ $$
 
 In row-vector notation for a linear layer:
 $$
-z = xW + b
+z = xW + b, \quad v \leftarrow \beta v + (1-\beta) g, \quad W \leftarrow W - \eta v
 $$
 
 Where:
 
-* $v^{(t)}$ — accumulated velocity
+* $g$ — mini-batch gradient
+* $v$ — accumulated velocity (smoothed gradient)
 * $\beta \in [0,1)$ — momentum coefficient (commonly 0.9)
 * $\eta$ — learning rate
 
@@ -88,7 +87,7 @@ Visual analogy:
 
 ---
 
-## 6. Practical Tips
+## 5. Practical Tips
 
 1. Typical momentum coefficient: $\beta = 0.9$
 2. Combine with mini-batch SGD for best results
@@ -96,6 +95,27 @@ Visual analogy:
 4. Learning rate may need slight adjustment when using momentum
 
 **Summary:** Momentum lets parameters **carry speed in consistent directions**, reducing oscillation and accelerating learning.
+
+---
+
+## 6. PyTorch Example
+
+```python
+import torch.optim as optim
+
+# SGD with momentum: v <- beta * v + (1-beta) * g, then W <- W - eta * v
+optimizer = optim.SGD(
+    model.parameters(),
+    lr=0.01,
+    momentum=0.9  # beta = 0.9
+)
+
+for X, y in dataloader:
+    optimizer.zero_grad()
+    loss = criterion(model(X), y)
+    loss.backward()
+    optimizer.step()  # Internally smooths g into v and updates W
+```
 
 ---
 

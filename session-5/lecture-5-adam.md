@@ -22,21 +22,15 @@ This leads to **Adam (Adaptive Moment Estimation)**.
 
 ---
 
-## 2. Mini-Batch Gradient Descent Recap
+## 2. Review — Mini-Batch Gradient Descent
 
-For reference, mini-batch gradient descent updates parameters as:
+Mini-batch SGD updates parameters as:
 
 $$
-W \leftarrow W - \eta g, \quad g = \frac{1}{B} \sum_{i \in \mathcal{B}} \frac{\partial \mathcal{L}_i}{\partial W}
+ g = \frac{1}{B} \sum_{i \in \mathcal{B}} \frac{\partial \mathcal{L}_i}{\partial W}, \quad W \leftarrow W - \eta g
 $$
 
-In row-vector notation for a linear layer:
-$$
-z = xW + b
-$$
-
-* Momentum adds a **velocity term** $v^{(t)}$
-* Adam goes further by also adapting the **learning rate per parameter**
+Momentum adds a **velocity term** $v$ that smooths $g$. Adam goes further by also adapting the **learning rate per parameter**.
 
 ---
 
@@ -50,19 +44,23 @@ Adam tracks two moving averages:
 ### 3.1 First Moment — Mean of Gradients
 
 $$
-m^{(t)} = \beta_1 m^{(t-1)} + (1-\beta_1) g^{(t)}
+m^{(t)} = \beta_1 m^{(t-1)} + (1-\beta_1) g
 $$
 
-* Similar to momentum
+* Similar to momentum's $v$: both smooth the raw gradient $g$
 * Captures **directional trend** of gradients
 * $\beta_1$ typically 0.9
+
+> [!NOTE]
+> **Why $m$ instead of $v$?**
+> In the momentum lecture we called the smoothed gradient $v$ (velocity). Adam uses $m$ (moment) for the same idea. Adam's $v$ is a *different* quantity — it tracks the volatility (squared gradients).
 
 ---
 
 ### 3.2 Second Moment — Mean of Squared Gradients
 
 $$
-v^{(t)} = \beta_2 v^{(t-1)} + (1-\beta_2) \big(g^{(t)}\big)^2
+v^{(t)} = \beta_2 v^{(t-1)} + (1-\beta_2) g^2
 $$
 
 * Measures **gradient magnitude and variability**
@@ -95,7 +93,7 @@ $$
 > *   $(\beta)^t$: The value of $\beta$ raised to the **power of the current time step $t$**.
 
 ### Why is this necessary?
-*   **The "Cold Start" Problem:** Without correction, $m^{(1)}$ would be $(1-\beta_1)g^{(1)}$. If $\beta_1 = 0.9$, your first update is only **10%** of what it should be.
+*   **The "Cold Start" Problem:** Without correction, $m^{(1)}$ would be $(1-\beta_1)g$. If $\beta_1 = 0.9$, your first update is only **10%** of what it should be.
 *   **The Fix:** At $t=1$, the denominator $1-(0.9)^1 = 0.1$. Dividing by $0.1$ effectively scales the moment back up to its true magnitude.
 *   **Self-Vanishing:** As training progresses ($t \to \infty$), the term $(\beta)^t$ quickly approaches **0**. The correction factor $1/(1-\beta^t)$ becomes **1**, meaning the correction naturally fades away once the moving averages become stable.
 
@@ -113,10 +111,10 @@ $$
 
 Where:
 
-* $W^{(t)}$ — parameters
+* $W$ — parameters
 * $\eta$ — base learning rate (typical 0.001)
-* $\hat{m}^{(t)}$ — bias-corrected first moment
-* $\hat{v}^{(t)}$ — bias-corrected second moment
+* $\hat{m}$ — bias-corrected first moment
+* $\hat{v}$ — bias-corrected second moment
 * $\epsilon$ — small number for numerical stability (e.g., $10^{-8}$)
 
 **Key idea:** Step size is **adapted per parameter** based on gradient history.
@@ -172,14 +170,14 @@ import torch.optim as optim
 optimizer = optim.Adam(
     model.parameters(),
     lr=0.001,
-    betas=(0.9, 0.999),
-    eps=1e-8
+    betas=(0.9, 0.999), # Optional: defaults are fine
+    eps=1e-8 # Optional: defaults are fine
 )
 
-for x, y in dataloader:
+for X, y in dataloader:
     optimizer.zero_grad()
-    prediction = model(x)
-    loss = loss_fn(prediction, y)
+    prediction = model(X)
+    loss = criterion(prediction, y)
     loss.backward()
     optimizer.step()
 ```
