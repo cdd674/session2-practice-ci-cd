@@ -21,12 +21,10 @@ a^{(0)} = x
 $$
 
 * Receives raw input
-* No computation beyond passing values
 
 **Hidden Layers**
 
 * Apply linear transformations followed by nonlinear activations
-* Can be multiple layers stacked
 
 **Output Layer**
 
