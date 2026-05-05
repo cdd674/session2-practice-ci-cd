@@ -131,10 +131,6 @@ Vectorization allows computing all neurons in a layer simultaneously, which is e
 **Depth**: number of layers $L$
 *More layers → more hierarchical representations*
 
-Intuition:
-
-* Width → learn more features at the same level
-* Depth → learn compositional or hierarchical features
 
 ---
 

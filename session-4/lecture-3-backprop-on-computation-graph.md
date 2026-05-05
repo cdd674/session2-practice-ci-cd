@@ -17,13 +17,18 @@ Example: $\mathcal{L} = (a \cdot b + c)^2$
 
 Graph:
 
-```
-a ---┐
-     * ---> u ---┐
-b ---┘           |
-                 + ---> 𝓛
-c ---------------┘
-```
+
+$$
+\large
+\begin{array}{ccccccccc}
+a & \searrow & & & & & & & \\
+& & \boxed{\times} & \longrightarrow & \boxed{+} & \longrightarrow & u & \longrightarrow & \boxed{(\cdot)^2} & \longrightarrow & \mathcal{L} \\
+b & \nearrow & & & \uparrow & & & & & & \\
+& & & & c & & & & & & \\
+\end{array}
+$$
+
+
 
 * $u = a \cdot b + c$
 * $\mathcal{L} = u^2$

@@ -39,7 +39,6 @@ $$
 * Output range: (0, 1)
 * Squeezes values → good for probabilities
 
----
 
 ### Tanh
 
@@ -50,7 +49,6 @@ $$
 * Output range: (-1, 1)
 * Centered at zero → helps with optimization
 
----
 
 ### ReLU (Rectified Linear Unit)
 

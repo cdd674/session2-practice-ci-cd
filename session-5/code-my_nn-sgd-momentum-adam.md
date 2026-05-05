@@ -26,6 +26,7 @@ In this session you refactor the update rule into **optimizer objects**:
 
 - **GD**: full-batch Gradient Descent
 - **SGD**: mini-batch Stochastic Gradient Descent
+- **Momentum**
 - **Adam**: adaptive learning rate + momentum
 
 ## Key design idea: separate responsibilities (PyTorch mental model)
