@@ -1,4 +1,4 @@
-# Task 9: Logistic Regression for Sentiment Classification
+# Task 4: Logistic Regression for Sentiment Classification
 
 ## Objective
 
