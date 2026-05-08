@@ -62,10 +62,6 @@ def get_vector(word):
     return None
 ```
 
-```python
-print("Utility functions ready.")
-```
-
 ---
 
 # Step 5: Compare Basic Similarities
